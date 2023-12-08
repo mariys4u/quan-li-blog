@@ -74,7 +74,7 @@ def login(request):
             user = auth.authenticate(email=email, password=password, captcha=captcha)
             if user is not None:
                 auth.login(request, user)
-                messages.success(request, 'You are now logged in')
+                messages.success(request, 'Bạn đã đăng xuất thành công')
                 return redirect('home')
             else:
                 messages.error(request, 'Vui lòng kiểm tra lại email hoặc mật khẩu hoặc captcha')
@@ -113,7 +113,7 @@ def email_verification(request, uidb64, token):
         user.is_active = True
 
         user.save()
-        messages.success(request, 'Account is verified successfully! ')
+        messages.success(request, 'Email của bạn đã được xác thực thành công')
 
         return redirect('login')
 
@@ -122,7 +122,7 @@ def email_verification(request, uidb64, token):
 
     else:
 
-        messages.error(request, 'Invalid activation link')
+        messages.error(request, 'Link đã hết hạn')
         
 
 
@@ -148,7 +148,7 @@ def forgotPassword(request):
             recipient_list = [email, ]
             send_mail(subject, message, email_from, recipient_list)    
             
-            messages.success(request, 'Password reset email has been sent to your email address')
+            messages.success(request, 'Vui lòng kiểm tra email của bạn để lấy lại mật khẩu')
                   
             return redirect('login')
         else:
@@ -168,10 +168,10 @@ def reset_password(request, uidb64, token):
         
     if user and user_tokenizer_generate.check_token(user, token):
         request.session['uid'] = uidb64
-        messages.success(request, 'Please reset your password')
+        messages.success(request, 'Vui lòng nhập mật khẩu mới')
         return redirect('resetPassword')
     else:
-        messages.error(request, 'This link has been expired')
+        messages.error(request, 'Link đã hết hạn')
         return redirect('login')
     
 
@@ -183,7 +183,7 @@ def resetPassword(request):
         if password and confirm_password:
             password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
             if not re.match(password_regex, password):
-                messages.error(request, 'Password must contain 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character')
+                messages.error(request, 'Mật khẩu phải có ít nhất 8 ký tự, ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt')
                 return redirect('resetPassword')
         
         
@@ -193,10 +193,10 @@ def resetPassword(request):
             user = Account.objects.get(pk=user_id)
             user.set_password(password)
             user.save()
-            messages.success(request, 'Password reset successfully')
+            messages.success(request, 'Mât khẩu đã được thay đổi thành công')
             return redirect('login')
         else:
-            messages.error(request, 'Password does not match')
+            messages.error(request, 'Mật khẩu không khớp')
             return redirect('resetPassword')
     else:
         return render(request, 'accounts/resetPassword.html')
