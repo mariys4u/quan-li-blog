@@ -4,7 +4,7 @@ Chào {{user.last_name}},
 
 
 {% comment %} Thank you for registering on our website. {% endcomment %}
-<b> Cảm ơn bạn đã đăng ký tài khoản. Vui lòng click vào link bên dưới để kích hoạt tài khoản của bạn </b>
+Cảm ơn bạn đã đăng ký tài khoản. Vui lòng click vào link bên dưới để kích hoạt tài khoản của bạn
 {% comment %} Please be so kind as to verify your email by clicking the link below: {% endcomment %}
 https://{{domain}}{% url 'email-verification' uidb64=uid token=token %}
 {% endautoescape %}
