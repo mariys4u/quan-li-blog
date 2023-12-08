@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- section-header.// -->
+
+    <!-- ========================= SECTION MAIN ========================= -->
+    <section class="section-intro padding-y-sm">
+      <div class="container">
+
+      </div>
+      <!-- container //  -->
+    </section>
+    <!-- ========================= SECTION MAIN END// ========================= -->
+
+    <!-- ========================= SECTION  ========================= -->
+    <section class="section-name padding-y-sm">
+      <div class="container">
+        <header class="section-heading">
+          <a href="./new" class="btn btn-outline-primary float-right"
+            >Tất cả các bài viết</a
+          >
+          <h3 class="section-title">Bài viết nổi bật</h3>
+        </header>
+        <!-- sect-heading -->
+
+        <!-- ============================ COMPONENT 1 ================================= -->
+        {% for article in articles  %}  
+        <div class="card">
+                
+          <div class="row no-gutters">
+            <aside class="col-md-6">
+              <article class="gallery-wrap">
+                <div class="img-small-wrap" >
+                  <a href="{{article.get_url}}"><img src="{{article.images.url}}" style="height:150px; margin-left:29%; margin-top:3%"  /></a>
+                </div>
+                <!-- .img-big-wrap -->
+              </article>
+              <!-- .gallery-wrap -->
+            </aside>
+            <!-- .col-md-6 -->
+
+            <main class="col-md-6 border-left">
+              <article class="content-body">
+                <a href="{{article.get_url}}" class="h4">{{article.title}}</a>
+                <p>
+                  {{article.quotation}}
+                </p>
+                <a href="{{article.get_url}}" class="btn btn-primary">
+                  <span href= "{{article.get_url}}" class="text">Xem thêm</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </article>
+              <!-- .content-body -->
+            </main>
+            <!-- .col-md-6 -->
+          </div>
+            
+        </div>
+        
+        <br />
+        {% endfor %}
+       
+        
+      </div>
+    </section>
+  </body>
+</html>
+
+
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="section-content padding-y bg">
+      <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="card">
+          <div class="box">
+            <aside class="col-md-auto">
+              <article class="gallery-wrap">
+                <div class="img-big-wrap">
+                  <a href="#"><img src="{{single_article.images.url}}" /></a>
+                </div>
+                <!-- img-big-wrap.// -->
+              </article>
+              <!-- gallery-wrap .end// -->
+            </aside>
+            <main class="col-md-auto">
+              <article class="content-body" style="display: flex;
+              flex-direction: column;
+              align-items: center;">
+                <h2 class="title">{{single_article.title}}</h2>
+
+                <div class="mb-3"></div>
+
+                <p style="    text-align: justify;
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529 !important;
+    margin-top: 0;
+    margin-bottom: 1rem;">
+                  {{single_article.content|linebreaksbr|safe}}
+                </p>
+              </article>
+              <!-- product-info-aside .// -->
+            </main>
+            <!-- col.// -->
+          </div>
+          <!-- row.// -->
+        </div>
+        <!-- card.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+
+        <br />
+
+        
+      </div>
+      <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+  </body>
+</html>
+
+{% endblock %}
