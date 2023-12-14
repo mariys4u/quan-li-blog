@@ -33,7 +33,7 @@ class RegistrationForm(forms.ModelForm):
         if password and confirm_password:
             password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$' # 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character
             if not re.match(password_regex, password):
-                raise forms.ValidationError('Password phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt')
+                raise forms.ValidationError('Password phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt.')
             if password != confirm_password:
                 raise forms.ValidationError('Password không khớp')
         return cleaned_data
